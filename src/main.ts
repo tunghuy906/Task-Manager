@@ -3,6 +3,7 @@ import "./style.css"
 type Task = {
   id: number
   title: string
+  description: string
   completed: boolean
 }
 
@@ -23,6 +24,7 @@ addBtn.addEventListener("click", () => {
   const newTask: Task = {
     id: Date.now(),
     title,
+    description: "",
     completed: false
   }
 
@@ -33,7 +35,6 @@ addBtn.addEventListener("click", () => {
   input.value = ""
 })
 
-// Render
 function renderTasks() {
   taskList.innerHTML = ""
 
@@ -44,33 +45,57 @@ function renderTasks() {
     li.innerHTML = `
       <label class="task-left">
         <input type="checkbox" ${task.completed ? "checked" : ""} />
-        <span class="${task.completed ? "completed" : ""}">
-          ${task.title}
-        </span>
+        <div class="task-content">
+          <span class="task-title ${task.completed ? "completed" : ""}">
+            ${task.title}
+          </span>
+
+          <textarea
+            class="task-desc"
+            placeholder="What will you do for this task?"
+          >${task.description}</textarea>
+        </div>
       </label>
+
       <button class="delete-btn">✖</button>
     `
 
-    // Toggle completed
+    // checkbox
     const checkbox = li.querySelector("input") as HTMLInputElement
-    checkbox.addEventListener("change", () => {
+    checkbox.onchange = () => {
       task.completed = checkbox.checked
       saveTasks()
       renderTasks()
-    })
+    }
 
-    // Delete
-    const deleteBtn = li.querySelector("button") as HTMLButtonElement
-    deleteBtn.addEventListener("click", () => {
+    const desc = li.querySelector(".task-desc") as HTMLTextAreaElement
+
+      const autoResize = () => {
+        desc.style.height = "auto"
+        desc.style.height = desc.scrollHeight + "px"
+      }
+
+      autoResize()
+
+      desc.oninput = () => {
+        task.description = desc.value
+        autoResize()
+        saveTasks()
+      }
+
+
+    // delete
+    const deleteBtn = li.querySelector(".delete-btn") as HTMLButtonElement
+    deleteBtn.onclick = () => {
       tasks = tasks.filter(t => t.id !== task.id)
       saveTasks()
       renderTasks()
-    })
+    }
 
     taskList.appendChild(li)
   })
+  
 }
-
 // Save
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks))

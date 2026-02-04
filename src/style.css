@@ -12,40 +12,49 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+
+  background-image: url("/BG2.jpg"); /* 🔥 ảnh nền */
+  background-size: cover;           /* phủ kín màn */
+  background-position: center;      /* căn giữa */
+  background-repeat: no-repeat;     /* không lặp */
 }
+
 
 /* ================= APP ================= */
 .app {
   width: 100%;
-  max-width: 520px;
-  background: #ffffff;
-  padding: 30px;
+  max-width: 960px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 24px;
   border-radius: 22px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
 }
 
-/* ================= TITLE ================= */
-h1 {
-  text-align: center;
-  margin-bottom: 26px;
-  font-size: 28px;
+/* ================= HEADER ================= */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.app-header h1 {
+  font-size: 30px;
   font-weight: 700;
-  color: #2d2d2d;
+  color: #ffffff;
 }
 
 /* ================= INPUT ================= */
 .input-group {
   display: flex;
-  gap: 12px;
-  margin-bottom: 26px;
+  gap: 8px;
 }
 
 #task-input {
-  flex: 1;
-  padding: 14px 16px;
-  font-size: 16px;
-  border-radius: 12px;
+  width: 200px;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 10px;
   border: 2px solid #e2e5ff;
   outline: none;
   transition: 0.25s;
@@ -53,19 +62,20 @@ h1 {
 
 #task-input:focus {
   border-color: #667eea;
-  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
 }
 
 /* ================= ADD BUTTON ================= */
 #add-btn {
-  padding: 14px 22px;
-  font-size: 16px;
-  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
   background: linear-gradient(135deg, #667eea, #5a6fdc);
-  color: white;
-  font-weight: 600;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
   transition: 0.25s;
 }
 
@@ -74,23 +84,24 @@ h1 {
   box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
 }
 
-/* ================= TASK LIST ================= */
-.task-list {
+/* ================= TASK BOARD ================= */
+.task-board {
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
 }
 
-/* ================= TASK ITEM ================= */
+/* ================= TASK CARD ================= */
 .task-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-
-  padding: 14px 16px;
   background: #f7f9ff;
-  border-radius: 14px;
+  border-radius: 16px;
+  padding: 14px;
+  min-height: 110px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
   transition: 0.25s ease;
   animation: fadeIn 0.25s ease;
@@ -98,44 +109,66 @@ h1 {
 
 .task-item:hover {
   background: #eef1ff;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+}
+
+/* ================= CARD HEADER ================= */
+.task-item-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
 /* ================= CHECKBOX ================= */
 .task-item input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   accent-color: #667eea;
   cursor: pointer;
-  flex-shrink: 0;
+
+  margin-top: 4px; /* 🔽 HẠ XUỐNG MỘT TÍ */
 }
+
 
 /* ================= TASK TITLE ================= */
 .task-title {
-  flex: 1; /* 🔥 CHÌA KHÓA GIỮ MỌI THỨ BẰNG NHAU */
-  font-size: 16px;
-  color: #2f2f2f;
+  flex: 1;
+  font-size: 15px;
   line-height: 1.4;
+  color: #2f2f2f;
+
+  white-space: normal;
   word-break: break-word;
-  transition: 0.2s;
+  overflow-wrap: anywhere; /* 🔥 CHỐT HẠ */
 }
 
-/* completed */
+
 .task-title.completed {
   text-decoration: line-through;
   color: #a0a0a0;
 }
+.task-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
 
 /* ================= DELETE BUTTON ================= */
 .delete-btn {
-  width: 36px;
-  height: 36px;
+  margin-left: auto;
+  align-self: flex-start; /* 🔥 ĐẨY LÊN TRÊN */
+  margin-top: -30px;       /* 🔥 Cao thêm tí nữa */
+
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: none;
 
   background: #ffeaea;
   color: #ff4d4f;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 
@@ -143,17 +176,46 @@ h1 {
   align-items: center;
   justify-content: center;
 
-  flex-shrink: 0;
   transition: 0.25s;
 }
 
 .delete-btn:hover {
   background: #ff4d4f;
   color: #ffffff;
-  transform: scale(1.08);
+  transform: scale(1.1);
+}
+.task-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
 }
 
-/* ================= ANIMATIONS ================= */
+.task-desc {
+  width: 100%;
+  min-height: 72px;     /* 🔥 TO HƠN */
+  resize: vertical;    /* cho kéo to thêm nếu muốn */
+
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #e2e5ff;
+
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.5;
+
+  background: #ffffff;
+  color: #333;
+}
+
+
+.task-desc:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.15);
+}
+
+/* ================= ANIMATION ================= */
 @keyframes fadeIn {
   from {
     opacity: 0;
