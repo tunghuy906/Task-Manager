@@ -1,0 +1,166 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* ================= BODY ================= */
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* ================= APP ================= */
+.app {
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* ================= TITLE ================= */
+h1 {
+  text-align: center;
+  margin-bottom: 26px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d2d2d;
+}
+
+/* ================= INPUT ================= */
+.input-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+#task-input {
+  flex: 1;
+  padding: 14px 16px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 2px solid #e2e5ff;
+  outline: none;
+  transition: 0.25s;
+}
+
+#task-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+}
+
+/* ================= ADD BUTTON ================= */
+#add-btn {
+  padding: 14px 22px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #667eea, #5a6fdc);
+  color: white;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+#add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* ================= TASK LIST ================= */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ================= TASK ITEM ================= */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 16px;
+  background: #f7f9ff;
+  border-radius: 14px;
+
+  transition: 0.25s ease;
+  animation: fadeIn 0.25s ease;
+}
+
+.task-item:hover {
+  background: #eef1ff;
+  transform: translateY(-1px);
+}
+
+/* ================= CHECKBOX ================= */
+.task-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #667eea;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ================= TASK TITLE ================= */
+.task-title {
+  flex: 1; /* 🔥 CHÌA KHÓA GIỮ MỌI THỨ BẰNG NHAU */
+  font-size: 16px;
+  color: #2f2f2f;
+  line-height: 1.4;
+  word-break: break-word;
+  transition: 0.2s;
+}
+
+/* completed */
+.task-title.completed {
+  text-decoration: line-through;
+  color: #a0a0a0;
+}
+
+/* ================= DELETE BUTTON ================= */
+.delete-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+
+  background: #ffeaea;
+  color: #ff4d4f;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+  transition: 0.25s;
+}
+
+.delete-btn:hover {
+  background: #ff4d4f;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
